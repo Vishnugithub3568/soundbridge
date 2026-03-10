@@ -3,6 +3,7 @@ package com.migrator;
 import com.migrator.auth.SpotifyAuth;
 import com.migrator.spotify.SpotifyClient;
 import com.migrator.spotify.PlaylistParser;
+import com.migrator.export.JsonExporter;
 import com.migrator.model.Song;
 
 import java.util.List;
@@ -19,11 +20,9 @@ public class Main {
 
         List<Song> songs = PlaylistParser.parseSongs(searchJson);
 
-        System.out.println("Songs extracted:");
+        System.out.println("Songs extracted: " + songs.size());
 
-        for (Song song : songs) {
-            System.out.println(song);
-        }
+        JsonExporter.exportPlaylist("Spotify Playlist", songs);
 
     }
 }

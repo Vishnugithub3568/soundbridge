@@ -2,6 +2,10 @@ package com.migrator;
 
 import com.migrator.auth.SpotifyAuth;
 import com.migrator.spotify.SpotifyClient;
+import com.migrator.spotify.PlaylistParser;
+import com.migrator.model.Song;
+
+import java.util.List;
 
 public class Main {
 
@@ -11,14 +15,14 @@ public class Main {
 
         String token = SpotifyAuth.getAccessToken();
 
-        System.out.println("Spotify Access Token: " + token);
+        String searchJson = SpotifyClient.searchTrack(token, "Adele");
 
-        if (token != null) {
-            System.out.println("\n--- Testing Search API ---");
-            String searchResult = SpotifyClient.searchTrack(token, "Hello Adele");
+        List<Song> songs = PlaylistParser.parseSongs(searchJson);
 
-            System.out.println("Search Results:");
-            System.out.println(searchResult);
+        System.out.println("Songs extracted:");
+
+        for (Song song : songs) {
+            System.out.println(song);
         }
 
     }

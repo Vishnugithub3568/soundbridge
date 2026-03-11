@@ -10,6 +10,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class YouTubeSearch {
 
+    private static boolean isBadMatch(String title) {
+
+        title = title.toLowerCase();
+
+        return title.contains("cover")
+            || title.contains("lyrics")
+            || title.contains("karaoke")
+            || title.contains("live")
+            || title.contains("remix");
+    }
+
     public static String searchVideo(String query) {
 
         try {
@@ -17,7 +28,7 @@ public class YouTubeSearch {
             String endpoint =
                     "https://www.googleapis.com/youtube/v3/search"
                     + "?part=snippet"
-                    + "&maxResults=1"
+                    + "&maxResults=5"
                     + "&q=" + query.replace(" ", "%20")
                     + "&type=video"
                     + "&key=" + YouTubeConfig.API_KEY;
@@ -42,13 +53,20 @@ public class YouTubeSearch {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(response.toString());
 
-            JsonNode videoIdNode =
-                    root.path("items")
-                        .get(0)
-                        .path("id")
-                        .path("videoId");
+            JsonNode items = root.path("items");
 
-            return videoIdNode.asText();
+            for (JsonNode item : items) {
+
+                String videoTitle = item.path("snippet").path("title").asText();
+                String videoId = item.path("id").path("videoId").asText();
+
+                if (!isBadMatch(videoTitle)) {
+
+                    return videoId;
+                }
+            }
+
+            return items.get(0).path("id").path("videoId").asText();
 
         } catch (Exception e) {
             e.printStackTrace();

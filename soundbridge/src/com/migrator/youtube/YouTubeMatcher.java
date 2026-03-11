@@ -14,10 +14,9 @@ public class YouTubeMatcher {
 
             System.out.println("Searching YouTube for: " + query);
 
-            String result = YouTubeSearch.searchVideo(query);
+            String videoId = YouTubeSearch.searchVideo(query);
 
-            System.out.println("Result:");
-            System.out.println(result);
+            System.out.println("Matched Video ID: " + videoId);
             System.out.println("--------------------------------");
 
         }

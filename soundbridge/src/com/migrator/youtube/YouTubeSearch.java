@@ -5,6 +5,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class YouTubeSearch {
 
     public static String searchVideo(String query) {
@@ -36,7 +39,16 @@ public class YouTubeSearch {
 
             reader.close();
 
-            return response.toString();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(response.toString());
+
+            JsonNode videoIdNode =
+                    root.path("items")
+                        .get(0)
+                        .path("id")
+                        .path("videoId");
+
+            return videoIdNode.asText();
 
         } catch (Exception e) {
             e.printStackTrace();

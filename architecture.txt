@@ -1,0 +1,28 @@
+Spotify
+   │
+   ▼
+Spotify API
+   │
+   ▼
+Playlist Parser
+   │
+   ▼
+Song Objects
+   │
+   ▼
+Title Cleaner
+   │
+   ▼
+JSON Export
+   │
+   ▼
+JSON Import
+   │
+   ▼
+YouTube Search
+   │
+   ▼
+Video ID Matching
+   │
+   ▼
+Migration Report

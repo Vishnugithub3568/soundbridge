@@ -7,6 +7,7 @@ import java.net.URL;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.migrator.utils.ConsoleLogger;
 
 public class YouTubeSearch {
 
@@ -69,7 +70,7 @@ public class YouTubeSearch {
             return items.get(0).path("id").path("videoId").asText();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            ConsoleLogger.error("YouTube search failed: " + e.getMessage());
         }
 
         return null;

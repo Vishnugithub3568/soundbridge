@@ -1,6 +1,7 @@
 package com.migrator.youtube;
 
 import com.migrator.model.Song;
+import com.migrator.utils.ConsoleLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,12 @@ public class YouTubeMatcher {
 
             String query = song.getTitle() + " " + song.getArtist();
 
-            System.out.println("Searching: " + query);
+            ConsoleLogger.info("Searching YouTube for: " + query);
 
             String videoId = YouTubeSearch.searchVideo(query);
 
-            System.out.println("Matched video: " + videoId);
-            System.out.println("------------------------");
+            ConsoleLogger.info("Matched video ID: " + videoId);
+            ConsoleLogger.info("------------------------");
 
             videoIds.add(videoId);
         }

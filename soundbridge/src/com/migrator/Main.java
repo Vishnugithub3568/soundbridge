@@ -1,6 +1,7 @@
 package com.migrator;
 
 import com.migrator.export.JsonImporter;
+import com.migrator.export.MatchExporter;
 import com.migrator.model.Song;
 import com.migrator.youtube.YouTubeMatcher;
 
@@ -10,13 +11,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("SoundBridge starting YouTube matching...");
+        System.out.println("SoundBridge matching songs...");
 
         List<Song> songs = JsonImporter.importPlaylist();
 
-        System.out.println("Songs loaded: " + songs.size());
+        List<String> videoIds = YouTubeMatcher.matchSongs(songs);
 
-        YouTubeMatcher.matchSongs(songs);
-
+        MatchExporter.exportMatches(songs, videoIds);
     }
 }

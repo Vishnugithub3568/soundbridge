@@ -1,9 +1,6 @@
 package com.migrator;
 
-import com.migrator.auth.SpotifyAuth;
-import com.migrator.spotify.SpotifyClient;
-import com.migrator.spotify.PlaylistParser;
-import com.migrator.export.JsonExporter;
+import com.migrator.export.JsonImporter;
 import com.migrator.model.Song;
 
 import java.util.List;
@@ -12,17 +9,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("SoundBridge starting...");
+        System.out.println("SoundBridge reading exported playlist...");
 
-        String token = SpotifyAuth.getAccessToken();
+        List<Song> songs = JsonImporter.importPlaylist();
 
-        String searchJson = SpotifyClient.searchTrack(token, "Adele");
-
-        List<Song> songs = PlaylistParser.parseSongs(searchJson);
-
-        System.out.println("Songs extracted: " + songs.size());
-
-        JsonExporter.exportPlaylist("Spotify Playlist", songs);
+        for (Song song : songs) {
+            System.out.println(song);
+        }
 
     }
 }

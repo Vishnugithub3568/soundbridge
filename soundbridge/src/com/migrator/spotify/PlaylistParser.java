@@ -3,6 +3,7 @@ package com.migrator.spotify;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.migrator.model.Song;
+import com.migrator.utils.StringMatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,8 @@ public class PlaylistParser {
                     trackNode = item;
                 }
 
-                title = trackNode.path("name").asText();
+                String rawTitle = trackNode.path("name").asText();
+                title = StringMatcher.cleanTitle(rawTitle);
                 
                 JsonNode artistsNode = trackNode.path("artists");
                 if (artistsNode.isArray() && artistsNode.size() > 0) {

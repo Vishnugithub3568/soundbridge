@@ -1,0 +1,17 @@
+com\migrator\config\Config.class
+com\migrator\spotify\PlaylistParser.class
+com\migrator\spotify\SpotifyClient.class
+com\migrator\auth\SpotifyConfig.class
+com\migrator\export\JsonExporter.class
+com\migrator\youtube\YouTubeMatcher.class
+com\migrator\auth\SpotifyAuth.class
+com\migrator\youtube\YouTubeSearch.class
+com\migrator\export\JsonImporter.class
+com\migrator\Main.class
+com\migrator\youtube\YouTubeConfig.class
+com\migrator\export\MigrationReport.class
+com\migrator\model\Song.class
+com\migrator\export\MatchExporter.class
+com\migrator\model\Playlist.class
+com\migrator\utils\StringMatcher.class
+com\migrator\utils\ConsoleLogger.class

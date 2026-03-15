@@ -1,5 +1,7 @@
+com\migrator\controller\HealthController.class
 com\migrator\config\Config.class
 com\migrator\spotify\PlaylistParser.class
+com\migrator\service\MigrationService.class
 com\migrator\spotify\SpotifyClient.class
 com\migrator\auth\SpotifyConfig.class
 com\migrator\export\JsonExporter.class
@@ -9,8 +11,10 @@ com\migrator\youtube\YouTubeSearch.class
 com\migrator\export\JsonImporter.class
 com\migrator\Main.class
 com\migrator\youtube\YouTubeConfig.class
+com\migrator\controller\MigrationController.class
 com\migrator\export\MigrationReport.class
 com\migrator\model\Song.class
+com\migrator\SoundBridgeApplication.class
 com\migrator\export\MatchExporter.class
 com\migrator\model\Playlist.class
 com\migrator\utils\StringMatcher.class
